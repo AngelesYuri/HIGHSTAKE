@@ -4,22 +4,54 @@
 
 // this are the class that can be called n the autonomous program in  the 
 void red_side_right()
-{}
+{
+  Drivetrain.driveFor(-1341.64,mm);
+  //on intake
+  Drivetrain.turnFor(45,degrees);
+  Drivetrain.driveFor(1200,mm);
+
+}
 
 void red_side_middle()
-{}
+{
+  Drivetrain.driveFor(-1341.64,mm);
+  Drivetrain.turnFor(45,degrees);
+  Drivetrain.driveFor(848.53,mm);
+  Drivetrain.turnFor(45,degrees);
+  Drivetrain.driveFor(600,mm);
+  Drivetrain.turnFor(45,degrees);
 
-void red_side_left()
-{}
+
+
+}
+
 
 void blue_side_right()
-{}
+{
+   Drivetrain.driveFor(-1341.64,mm);
+   Drivetrain.turnFor(-45,degrees);
+   Drivetrain.driveFor(1200,mm);
+
+
+
+}
 
 void blue_side_middle()
-{}
+{
+   Drivetrain.driveFor(-1341.64,mm);
+   Drivetrain.turnFor(-45,degrees);
+   Drivetrain.driveFor(848.53,mm);
+   Drivetrain.turnFor(-45,degrees);
+   Drivetrain.driveFor(600,mm);
+   Drivetrain.turnFor(90,degrees);
+   Drivetrain.driveFor(600,mm);
 
-void blue_side_left()
-{}
+
+
+
+}
+
+
 
 void drivetrain_test()
 {

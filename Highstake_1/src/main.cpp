@@ -102,16 +102,22 @@ void autonomous(void) {
            drivetrain_test();
            break;
       case 1:
+           red_side_left();
            break;
       case 2:
+           red_side_left();
            break;
       case 3:
+           red_side_left();
            break; 
       case 4:
+           blue_side_left();
            break;
       case 5:
+           blue_side_right();
            break;
       case 6:
+           blue_side_middle();
            break;
       case 7:
            break;
