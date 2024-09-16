@@ -102,22 +102,22 @@ void autonomous(void) {
            drivetrain_test();
            break;
       case 1:
-           red_side_left();
+           red_side_right();
            break;
       case 2:
-           red_side_left();
+           red_side_middle();
            break;
       case 3:
-           red_side_left();
+           blue_side_right();
            break; 
       case 4:
-           blue_side_left();
+           blue_side_middle();
            break;
       case 5:
-           blue_side_right();
+           
            break;
       case 6:
-           blue_side_middle();
+           
            break;
       case 7:
            break;
@@ -139,6 +139,7 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
      
+    
      //dunk(dunks_switch);
      //lift_at_level(0,switch_lift);
      while(Controller1.ButtonA.pressing())

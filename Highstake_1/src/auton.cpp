@@ -55,17 +55,20 @@ void blue_side_middle()
 
 void drivetrain_test()
 {
-  Drivetrain.driveFor(600, mm);
+  Drivetrain.setDriveVelocity(100, percent);
+  Drivetrain.driveFor(1800, mm);
+  Drivetrain.setStopping(brake);
   wait(500,msec);
-  Drivetrain.turnFor(-90, degrees);
+  Drivetrain.turnFor(-360, degrees);
   wait(500,msec);
+  Drivetrain.setStopping(brake);
+  Drivetrain.turnFor(360, degrees);
   
-  Drivetrain.turnFor(90, degrees);
-  Drivetrain.driveFor(-600, mm);
+  Drivetrain.driveFor(-1800, mm);
 
-  Drivetrain.setDriveVelocity(90, percent);
+ 
   sorter_(true,1);
   lift_at_level(2,true);
 
   
-}
+} 
