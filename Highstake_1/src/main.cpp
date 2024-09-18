@@ -32,16 +32,16 @@ competition Competition;
 /*  function is only called once after the V5 has been powered on and        */
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
-int  autonCurrent = 0;
-bool autoStarted  = false;
+int  autonomousCurrent = 0;
+bool autonomousStarted  = false;
 
-bool dunks_switch = false;
+bool dunksSwitch = false;
 
-int lift_level= 0;
-bool switch_lift = false;
+int liftlevel= 0;
+bool switchlift = false;
 
-int sorter_color = 0; //0 for red ,1 for blue
-bool sorter_cam =false;
+int sorterColor = 0; //0 for red ,1 for blue
+bool sorterCam =false;
 
 
 void pre_auton(void) {
@@ -50,10 +50,10 @@ void pre_auton(void) {
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-  while (autoStarted== false)
+  while (autonomousStarted== false)
   {
-    Brain.Screen.clearLine(); 
-    switch (autonCurrent)
+    Brain.Screen.clearLine(); //shows the current autonomous in the screen
+    switch (autonomousCurrent)
     {
       case 0:
       //display in  the screen
@@ -61,21 +61,33 @@ void pre_auton(void) {
        break;
        case 1:
       //display in  the screen
-       Brain.Screen.print("d_test"); 
+       Brain.Screen.print("red_side_right"); 
        break;
        case 2:
       //display in  the screen
-       Brain.Screen.print("C_test"); 
+       Brain.Screen.print("red_side_middle"); 
        break;
+        case 3:
+      //display in  the screen
+       Brain.Screen.print("blue_side_right"); 
+       break;
+        case 4:
+      //display in  the screen
+       Brain.Screen.print("blue_side_middle"); 
+       break;
+        
+      
+      
+      
       
     }
 
-    if(Brain.Screen.pressing() )
+    if(Brain.Screen.pressing() ) //change the current autonomous 
     {
-      autonCurrent++;
-      if(autonCurrent == 8)
+      autonomousCurrent++;
+      if(autonomousCurrent ==4) //4 is he limit of the autonmous side /and is reset 
       {
-        autonCurrent =0;
+        autonomousCurrent =0;
 
       }
     }
@@ -96,8 +108,8 @@ void pre_auton(void) {
 
 void autonomous(void) {
 
-    autoStarted = true;
-    switch(autonCurrent){
+    autonomousStarted = true;
+    switch(autonomousCurrent){
       case 0:
            drivetrain_test();
            break;
@@ -113,14 +125,7 @@ void autonomous(void) {
       case 4:
            blue_side_middle();
            break;
-      case 5:
-           
-           break;
-      case 6:
-           
-           break;
-      case 7:
-           break;
+      
     }
 
 }
@@ -144,13 +149,12 @@ void usercontrol(void) {
      //lift_at_level(0,switch_lift);
      while(Controller1.ButtonA.pressing())
      {
-      sorter_color = 1;
-      sorter_cam = true;
+      sorterColor = 1;
+      sorterCam = true;
      }  
      
 
-    lift_at_level(lift_level,switch_lift);
-    sorter_(sorter_cam,sorter_color);
+   
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }

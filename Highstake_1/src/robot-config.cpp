@@ -34,6 +34,10 @@ bool RemoteControlCodeEnabled = true;
 bool DrivetrainLNeedsToBeStopped_Controller1 = true;
 bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
+// define the direction of the drivetrain
+
+int Drivetrain_direction = 1;
+
 // define a task that will handle monitoring inputs from Controller1
 int rc_auto_loop_function_Controller1() {
   // process the controller input every 20 milliseconds
@@ -43,8 +47,8 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
-      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
+      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()) * Drivetrain_direction;
+      int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()) * Drivetrain_direction;
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
@@ -84,8 +88,15 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
+
+    if(Controller1.ButtonA.pressing())
+    {
+      // change the direction,by multiplying it negative one 
+      //for  
+      Drivetrain_direction *= -1;
+    }
     // wait before repeating the process
-    wait(20, msec);
+    wait(100, msec);
   }
   return 0;
 }
